@@ -1,53 +1,94 @@
+/*
+ * Author: Pratanu Mandal
+ * 
+ * This file is part of LOGO++.
+ * 
+ * LOGO++ is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * LOGO++ is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with LOGO++.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package com.logopp.parser.ast;
 
-import java.util.ArrayList;
+import com.logopp.lexer.Token;
 
-public class Node
+public abstract class Node
 {
 	// token contained in the node
-	private String token;
+	protected Token token;
 	
-	// children of the node
-	private ArrayList<Node> children;
+	// parent node in sequential execution
+	protected Node parent;
 	
 	// next node in sequential execution
-	private Node next;
+	protected Node next;
 	
-	// constructor
-	public Node(String token) {
+	/**
+	 * Parameterized constructor
+	 * @param token: The token contained in this node
+	 */
+	public Node(Token token) {
 		super();
 		this.token = token;
 	}
 	
-	public Node[] getChildren() {
-		return children.toArray(new Node[0]);
-	}
-
-	public void setChildren(ArrayList<Node> children) {
-		this.children = children;
+	/* Getters and Setters */
+	
+	/**
+	 * Get token contained by this node
+	 * @return token contained by this node
+	 */
+	public Token getToken() {
+		return token;
 	}
 	
-	public Node getChild(int index) {
-		return this.children.get(index);
+	/**
+	 * Get parent node in sequential execution
+	 * @return parent node
+	 */
+	public Node getParent() {
+		return parent;
 	}
 	
-	public void addChild(Node node) {
-		this.children.add(node);
+	/**
+	 * Set parent node in sequential execution
+	 * @param parent: parent node
+	 */
+	public void setParent(Node parent) {
+		this.parent = parent;
 	}
 	
-	public void addChild(int index, Node node) {
-		this.children.add(index, node);
-	}
-
+	/**
+	 * Get next node in sequential execution
+	 * @return next node
+	 */
 	public Node getNext() {
 		return next;
 	}
 
+	/**
+	 * Set next node in sequential execution
+	 * @param next: next node
+	 */
 	public void setNext(Node next) {
 		this.next = next;
 	}
-
-	public String getToken() {
-		return token;
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Node [token=" + token + ", parent=" + parent + ", next=" + next + "]";
 	}
 }
