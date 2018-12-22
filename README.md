@@ -1,6 +1,6 @@
 # LOGO++
 A reimagination of LOGO with object oriented concepts.<br>
-Aim of this project is to create a language that is simple and fun enough to teach 4 & 5th graders object oriented programming concepts while at the same time being flexible enough to be extended for more demanding work in the future.
+Aim of this project is to create a language that is simple and fun enough to teach 4th & 5th graders object oriented programming concepts while at the same time being flexible enough to be extended for more demanding work in the future.
 
 
 This is a work in progress.<br>
