@@ -11,10 +11,10 @@ Although the language guidelines have been formulated, they are not set in stone
 Do note that LOGO++ is not intended to be a general purpose programming language.<br>
 With that in mind, LOGO++ will have feature additions incrementally.<br>
 
-However, as it stands, version 1.0 will be pretty barebones and as such will allow only a subset of features of Object Oriented Progamming. For instance, it will lack the concept of functions although constructors will be an integral part of the language.<br>
+However, as it stands, version 1.0 will be pretty barebones and as such will allow only a subset of features of OOP. For instance, it will lack the concept of functions although constructors and inheritance will be an integral part of the language.<br>
 This is an intentional design choice since the primary objective of LOGO++ is to teach basic concepts of OOP to 4th and 5th graders.<br>
 
-To transcend use of LOGO++ for more serious work, subsequent versions will extend the original specification to include more high level features.
+To transcend use of LOGO++ for more serious work, subsequent versions will extend the original specification to include more high level features.<br>
 
 
 Have any inputs that would make LOGO++ better?<br>
