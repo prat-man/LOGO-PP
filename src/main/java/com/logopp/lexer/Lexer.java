@@ -125,6 +125,17 @@ public class Lexer
 				// read next character also to handle composite operators
 				next = isr.read();
 				
+				// ignore comments in source file (comments start with #)
+				if (ch == '#') {
+					// handle line endings
+					// if using old mac line ending, use \r to break lines
+					// else use \n to break lines for both windows and linux
+					while (!((char) ch == '\n' || ((char) ch == '\r' && (char) next != '\n'))) {
+						ch = next;
+						next = isr.read();
+					}
+				}
+				
 				// if character is whitespace, add lexeme to tokens list
 				if (Character.isWhitespace((char) ch)) {
 					if (!lexeme.equals(new String())) {
