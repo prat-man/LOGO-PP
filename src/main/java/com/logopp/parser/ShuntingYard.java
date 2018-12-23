@@ -19,11 +19,14 @@
 
 package com.logopp.parser;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EmptyStackException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Stack;
 
-import com.logopp.api.core.Constants;
+import com.logopp.api.core.Lexicon;
 import com.logopp.lexer.Lexer;
 import com.logopp.lexer.Token;
 import com.logopp.parser.ast.BinaryNode;
@@ -42,7 +45,7 @@ public class ShuntingYard
         	Token token = tokens[i];
             String lexeme = token.getLexeme();
             
-            if (Constants.isKeyword(lexeme) || lexeme.equals(";")) {
+            if (Lexicon.isKeyword(lexeme) || lexeme.equals(";")) {
                 do {
                     Token op = opStack.pop();
                     
@@ -59,12 +62,18 @@ public class ShuntingYard
             }
             
             else if (lexeme.equals(")")) {
-                Token op = opStack.pop();
-                
-                while (!op.getLexeme().equals("(")) {
-                    postfix.push(op);
-                    op = opStack.pop();
-                }
+            	try {
+	                Token op = opStack.pop();
+	                
+	                while (!op.getLexeme().equals("(")) {
+	                    postfix.push(op);
+	                    op = opStack.pop();
+	                }
+            	}
+            	catch (EmptyStackException e) {
+            		// Stack underflow - expression has probably ended
+            		break;
+            	}
             }
             
             else if (isBinaryOperator(lexeme)) {
@@ -73,14 +82,6 @@ public class ShuntingYard
             	}
             	
             	opStack.push(token);
-                /*if (opStack.empty() || precedence(lexeme) >= precedence(opStack.peek().getLexeme())) {
-                    opStack.push(token);
-                }
-                else {
-                	do {
-                		postfix.push(opStack.pop());
-                	} while (!opStack.empty() && precedence(lexeme) >= precedence(opStack.peek().getLexeme()));
-                }*/
             }
             
             else {
@@ -171,7 +172,7 @@ public class ShuntingYard
         	System.out.println(token);
         }
         
-        Node node = ShuntingYard.exprToAST(tokens, 5);
+        Node node = ShuntingYard.exprToAST(tokens, 4);
         
         System.out.println(node.toString());
     }

@@ -21,7 +21,7 @@ package com.logopp.api.core;
 
 import java.util.ArrayList;
 
-public class Constants
+public class Lexicon
 {
 	/*********************************************
 	 *                 Keywords                  *
@@ -33,22 +33,42 @@ public class Constants
 		if (keywords == null) {
 			keywords = new ArrayList<String>();
 			
+			// direction control
 			keywords.add("forward");
-			keywords.add("back");
-			keywords.add("right");
-			keywords.add("left");
-			keywords.add("home");
-			keywords.add("clear");
-			keywords.add("clearscreen");
-			keywords.add("hideturtle");
-			keywords.add("showturtle");
-			keywords.add("penup");
-			keywords.add("pendown");
-			keywords.add("cleartext");
-			keywords.add("repeat");
-			//keywords.add("loop");
-			keywords.add("cleartext");
+			keywords.add("backward");
+			keywords.add("rightturn");
+			keywords.add("leftturn");
 			
+			// reset environment state
+			//keywords.add("reset");
+			
+			// reset turtle to starting position
+			//keywords.add("home");
+			
+			// clear image
+			keywords.add("clear");
+			
+			// turtle visibility control
+			keywords.add("turtle.hide");
+			keywords.add("turtle.show");
+			
+			// pen marking control
+			keywords.add("pen.up");
+			keywords.add("pen.down");
+			
+			// branching control
+			keywords.add("if");
+			keywords.add("else");
+			keywords.add("repeat");
+			keywords.add("while");
+			
+			// other reserved keywords
+			keywords.add("class");
+			keywords.add("construct");
+			keywords.add("render");
+			keywords.add("def");
+			
+			// predefined classes
 			keywords.add("rectangle");
 			keywords.add("square");
 			keywords.add("circle");
@@ -91,7 +111,7 @@ public class Constants
 			operators.add(")");
 			operators.add("::");
 			operators.add(",");
-			operators.add(".");
+			//operators.add(".");
 			operators.add(";");
 		}
 	}

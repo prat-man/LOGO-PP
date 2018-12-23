@@ -32,14 +32,14 @@ import org.mozilla.universalchardet.UniversalDetector;
 import com.glaforge.i18n.io.CharsetToolkit;
 import com.ibm.icu.text.CharsetDetector;
 import com.ibm.icu.text.CharsetMatch;
-import com.logopp.api.core.Constants;
+import com.logopp.api.core.Lexicon;
 
 public class Lexer
 {
 	/**
-	 * getLexemes a source file into lexemes
+	 * Tokenize a source file into tokens
 	 * @param file: instance of type java.io.File for source file
-	 * @return String array containing the lexemes
+	 * @return Array containing the tokens
 	 * @throws IOException
 	 */
 	public static Token[] getTokens(File file) throws IOException
@@ -61,9 +61,9 @@ public class Lexer
 	}
 	
 	/**
-	 * getLexemes a source file into lexemes
+	 * Tokenize a source file into tokens
 	 * @param filePath: path to source file
-	 * @return String array containing the lexemes
+	 * @return Array containing the tokens
 	 * @throws IOException
 	 */
 	public static Token[] getTokens(String filePath) throws IOException
@@ -72,9 +72,9 @@ public class Lexer
 	}
 	
 	/**
-	 * Utility method that actually getLexemess the source file
+	 * Utility method that actually gets lexemes from the source file as tokens
 	 * @param file: instance of type java.io.File for source file
-	 * @return String array containing the lexemes
+	 * @return Array containing the tokens
 	 * @throws IOException
 	 */
 	private static Token[] getTokensFromFile(File file) throws IOException
@@ -145,7 +145,7 @@ public class Lexer
 				}
 				
 				// if it is a composite operator, add lexeme and composite operator to tokens list
-				else if (next != -1 && Constants.isOperator(String.valueOf((char) ch) + String.valueOf((char) next))) {
+				else if (next != -1 && Lexicon.isOperator(String.valueOf((char) ch) + String.valueOf((char) next))) {
 					if (!lexeme.equals(new String())) {
 						tokens.add(new Token(lexeme, line, column - lexeme.length()));
 						lexeme = new String();
@@ -161,7 +161,7 @@ public class Lexer
 				}
 				
 				// if (character is a simple operator, add lexeme and simple operator to lexeme list
-				else if (Constants.isOperator(String.valueOf((char) ch))) {
+				else if (Lexicon.isOperator(String.valueOf((char) ch))) {
 					if (!lexeme.equals(new String())) {
 						tokens.add(new Token(lexeme, line, column - lexeme.length()));
 						lexeme = new String();

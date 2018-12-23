@@ -1,0 +1,15 @@
+class rectangle {
+	construct {
+		length,
+		breadth
+	}
+
+	render {
+		repeat(2) {
+			forward(length);
+			rightturn(90);
+			forward(breadth);
+			rightturn(90);
+		}
+	}
+}
