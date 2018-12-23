@@ -19,11 +19,7 @@
 
 package com.logopp.parser;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EmptyStackException;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Stack;
 
 import com.logopp.api.core.Lexicon;
@@ -76,7 +72,7 @@ public class ShuntingYard
             	}
             }
             
-            else if (isBinaryOperator(lexeme)) {
+            else if (Lexicon.isBinaryOperator(lexeme)) {
             	while (!opStack.empty() && precedence(lexeme) < precedence(opStack.peek().getLexeme())) {
             		postfix.push(opStack.pop());
             	}
@@ -108,13 +104,13 @@ public class ShuntingYard
 
     private static void stackToAST(Stack<Token> postfix, BinaryNode root)
     {
-    	if (isBinaryOperator(root.getToken().getLexeme())) {
+    	if (Lexicon.isBinaryOperator(root.getToken().getLexeme())) {
     		Token token;
     		
     		token = postfix.pop();
     		
     		if (token != null) {
-    			if (isBinaryOperator(token.getLexeme())) {
+    			if (Lexicon.isBinaryOperator(token.getLexeme())) {
     				BinaryNode node = new BinaryNode(token);
     				node.setParent(root);
     				root.setRight(node);
@@ -131,7 +127,7 @@ public class ShuntingYard
     		token = postfix.pop();
     		
     		if (token != null) {
-    			if (isBinaryOperator(token.getLexeme())) {
+    			if (Lexicon.isBinaryOperator(token.getLexeme())) {
     				BinaryNode node = new BinaryNode(token);
     				node.setParent(root);
     				root.setLeft(node);
@@ -157,11 +153,6 @@ public class ShuntingYard
             
             default:  return 0;
         }
-    }
-
-    private static boolean isBinaryOperator(String lexeme) {
-        List<String> binOps = Arrays.asList(new String[]{"/", "*", "+", "-"});
-        return binOps.contains(lexeme);
     }
     
     public static void main(String[] args) throws Exception
