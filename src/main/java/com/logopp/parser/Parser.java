@@ -19,6 +19,7 @@
 
 package com.logopp.parser;
 
+import com.logopp.api.core.Lexicon;
 import com.logopp.lexer.Token;
 import com.logopp.parser.ast.Node;
 
@@ -38,15 +39,59 @@ public class Parser
 	public void parse()
 	{
 		while (index < tokens.length) {
-			// TODO: Handle keywords
+			String lexeme = tokens[index].getLexeme();
+			String nextLexeme = tokens[index + 1].getLexeme();
 			
-			// TODO: Handle compound statements (brackets {})
+			// Handle keywords
+			if (Lexicon.isKeyword(lexeme)) {
+				handleKeyword();
+			}
 			
-			// TODO: Handle assignments
+			// Handle compound statements (brackets {})
+			else if (lexeme.equals("{")) {
+				handleCompoundStatement();
+			}
 			
-			// TODO: Handle expressions
+			// Handle assignments
+			else if (nextLexeme.equals("=")) {
+				handleAssignment();
+			}
 			
-			// TODO: Handle function calls
+			// Handle expressions
+			else if (Lexicon.isBinaryOperator(nextLexeme)) {
+				handleExpression();
+			}
+			
+			// Handle function calls
+			// Well, constructor calls to be more precise; we do not allow functions yet
+			else if (nextLexeme.equals("(")) {
+				handleFunctionCall();
+			}
 		}
+	}
+
+	private void handleFunctionCall() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void handleExpression() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void handleAssignment() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void handleCompoundStatement() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void handleKeyword() {
+		// TODO Auto-generated method stub
+		
 	}
 }

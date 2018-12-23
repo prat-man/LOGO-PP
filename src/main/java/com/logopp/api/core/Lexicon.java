@@ -20,6 +20,8 @@
 package com.logopp.api.core;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Lexicon
 {
@@ -64,6 +66,7 @@ public class Lexicon
 			
 			// other reserved keywords
 			keywords.add("class");
+			keywords.add("func");
 			keywords.add("construct");
 			keywords.add("render");
 			keywords.add("def");
@@ -125,4 +128,9 @@ public class Lexicon
 	{
 		return operators.contains(op);
 	}
+	
+	public static boolean isBinaryOperator(String lexeme) {
+        List<String> binOps = Arrays.asList(new String[]{"/", "*", "+", "-"});
+        return binOps.contains(lexeme);
+    }
 }
