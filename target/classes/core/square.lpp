@@ -1,0 +1,7 @@
+class square :: rectangle {
+	construct {
+		side,
+		length :: side,
+		breadth :: side
+	}
+}
