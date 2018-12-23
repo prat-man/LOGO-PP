@@ -17,36 +17,43 @@
  * along with LOGO++.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.logopp.parser;
+package com.logopp.parser.ast;
 
 import com.logopp.lexer.Token;
-import com.logopp.parser.ast.Node;
 
-public class Parser
+public class ConditionalNode extends Node
 {
-	private int index;
+	private Node condition;
 	
-	private Node root;
+	private Node trueChild;
 	
-	private Token[] tokens;
+	private Node falseChild;
 	
-	public Parser(Token[] tokens)
-	{
-		this.tokens = tokens; 
+	public ConditionalNode(Token token) {
+		super(token);
 	}
-	
-	public void parse()
-	{
-		while (index < tokens.length) {
-			// TODO: Handle keywords
-			
-			// TODO: Handle compound statements (brackets {})
-			
-			// TODO: Handle assignments
-			
-			// TODO: Handle expressions
-			
-			// TODO: Handle function calls
-		}
+
+	public Node getCondition() {
+		return condition;
+	}
+
+	public void setCondition(Node condition) {
+		this.condition = condition;
+	}
+
+	public Node getTrueChild() {
+		return trueChild;
+	}
+
+	public void setTrueChild(Node trueChild) {
+		this.trueChild = trueChild;
+	}
+
+	public Node getFalseChild() {
+		return falseChild;
+	}
+
+	public void setFalseChild(Node falseChild) {
+		this.falseChild = falseChild;
 	}
 }

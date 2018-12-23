@@ -17,36 +17,33 @@
  * along with LOGO++.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.logopp.parser;
+package com.logopp.parser.ast;
 
 import com.logopp.lexer.Token;
-import com.logopp.parser.ast.Node;
 
-public class Parser
+public class BinaryNode extends Node
 {
-	private int index;
+	private Node left;
 	
-	private Node root;
+	private Node right;
 	
-	private Token[] tokens;
-	
-	public Parser(Token[] tokens)
-	{
-		this.tokens = tokens; 
+	public BinaryNode(Token token) {
+		super(token);
 	}
-	
-	public void parse()
-	{
-		while (index < tokens.length) {
-			// TODO: Handle keywords
-			
-			// TODO: Handle compound statements (brackets {})
-			
-			// TODO: Handle assignments
-			
-			// TODO: Handle expressions
-			
-			// TODO: Handle function calls
-		}
+
+	public Node getLeft() {
+		return left;
+	}
+
+	public void setLeft(Node left) {
+		this.left = left;
+	}
+
+	public Node getRight() {
+		return right;
+	}
+
+	public void setRight(Node right) {
+		this.right = right;
 	}
 }
